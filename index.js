@@ -1,12 +1,15 @@
 'use strict';
-import { HTTPConnection } from './lib/http-connection';
-import { WSConnection } from './lib/ws-connection';
-
-const httpConnection = new HTTPConnection('localhost');
-const wsConnection = new WSConnection('localhost');
+import { loadApi } from './lib/api';
 
 (async () => {
-  const res1 = await httpConnection.call('auth/me');
-  const res2 = await wsConnection.call('auth/me');
-  console.log(res1, res2);
+  const api = await loadApi();
+  try {
+    console.log(await api.auth.login({ username: 'danil', password: 'danilpassword1' }));
+    console.log(await api.auth.me());
+    console.log(await api.auth.logout());
+    console.log(await api.auth.login({ username: 'danil', password: 'danilpassword1' }));
+    console.log(await api.auth.me());
+  } catch (error) {
+    console.log(error);
+  }
 })();
