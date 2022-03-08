@@ -38,7 +38,8 @@
     "start": "node index.js",
     "lint": "eslint --ignore-path .gitignore .",
     "fix": "eslint --fix --ignore-path .gitignore .",
-    "test": "npm run lint && jest test"
+    "test": "npm run lint && jest test",
+    "dev": "webpack serve"
   },
   "engines": {
     "node": ">=16"
@@ -49,6 +50,12 @@
     "eslint-config-prettier": "^8.3.0",
     "jest": "^27.3.1",
     "prettier": "2.5.1",
-    "typescript": "^4.4.4"
+    "typescript": "^4.4.4",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
+  },
+  "dependencies": {
+    "ajv": "^8.10.0"
   }
 }
