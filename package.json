@@ -39,7 +39,8 @@
     "start": "node index.js",
     "lint": "eslint --ignore-path .gitignore .",
     "fix": "eslint --fix --ignore-path .gitignore .",
-    "test": "npm run lint && jest test"
+    "test": "npm run lint && jest test",
+    "dev": "webpack serve"
   },
   "engines": {
     "node": ">=16"
