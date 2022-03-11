@@ -12,7 +12,7 @@ const apiTemplate = `import { Api } from 'web-soft-client';
  */
 export let api = {};
 
-export const loadApi = async () => {
+export const loadApi = async (config = {}) => {
   const loadedApi = new Api(config);
   await loadedApi.build();
   api = loadedApi;
