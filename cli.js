@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const parseOptions = require('parse-options');
-const http = require('http');
+const http = require('https');
 const path = require('path');
 const fs = require('fs');
 
@@ -34,7 +34,8 @@ const request = (data, hostname, port) =>
         headers: {
           'Content-Type': 'application/json',
           'Content-Length': data.length
-        }
+        },
+        rejectUnauthorized: false
       },
       (response) => {
         response.on('data', (data) => {
