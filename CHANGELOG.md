@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <!-- ## [Unreleased] -->
 
+## [1.2.0] - 2022-09-08
+
+### Added
+
+- connectionResetTimeout option to Api.
+- serverResponseTimeout option to Api.
+- EonConnectionError option to Api.
+
+### Changed
+
+- Api tries to reconnect to the server after connection was close.
+
 ## [1.1.0] - 2022-09-03
 
 ### Added
@@ -41,7 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - WSConnection class for WS protocol support.
 - Api class for building and calling methods of api modules.
 
-[unreleased]: https://github.com/web-soft-llc/web-soft-client/compare/v1.1.0...master
+[unreleased]: https://github.com/web-soft-llc/web-soft-client/compare/v1.2.0...master
+[1.2.0]: https://github.com/web-soft-llc/web-soft-client/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/web-soft-llc/web-soft-client/compare/v.1.0.1...v1.1.0
 [1.0.1]: https://github.com/web-soft-llc/web-soft-client/compare/v.1.0.0...v.1.0.1
 [1.0.0]: https://github.com/web-soft-llc/web-soft-client/releases/tag/v.1.0.0

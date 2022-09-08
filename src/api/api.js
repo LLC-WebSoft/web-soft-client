@@ -7,6 +7,7 @@ export let api = {};
 
 export const loadApi = async (config = {}) => {
   const loadedApi = new Api(config);
+  await loadedApi.connect();
   await loadedApi.build();
   api = loadedApi;
 };

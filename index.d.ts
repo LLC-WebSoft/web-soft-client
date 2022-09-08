@@ -2,6 +2,9 @@ export interface ApiConfig {
   host: string;
   secure: boolean;
   getModulesMethod: string;
+  connectionResetTimeout: number;
+  serverResponseTimeout: number;
+  onConnectionError: function(event) : void;
 };
 
 export function loadApi(config: ApiConfig) : void;
