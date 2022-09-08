@@ -115,6 +115,7 @@ export let api = {};
 
 export const loadApi = async (config = {}) => {
   const loadedApi = new Api(config);
+  await loadedApi.connect();
   await loadedApi.build();
   api = loadedApi;
 };
@@ -133,11 +134,11 @@ export const loadApi = async (config = {}) => {
 Принимаемые параметры:
 
 - `path`: `string` - путь для расположения файла, должен совпадать с местонахождением файла с объектом `api`. Можно указать альтернативный путь, однако для корректной работы необходимо вручную прописать новый путь в файле с объектом `api`.
-- `port`: `number` - порт, на котором работает API сервер.
-- `host`: `string` - имя хоста, на котором работает API сервер.
-
+- `port | p`: `number` - порт, на котором работает API сервер.
+- `host | h`: `string` - имя хоста, на котором работает API сервер.
+- `secure | s`: `boolean` - использовать https соединение.
 ```
-web-soft-client types --path ./src/api --port 80 --host localhost
+web-soft-client types --path ./src/api --port 80 --host localhost -s
 ```
 
 ## Построение и использование объекта api<a name="api.example"></a>
@@ -309,6 +310,9 @@ const result = api.example.subscriptionMethod({}, (error, data) => {
 | [host] | string | Адрес и порт сервера, к которому необходимо подключиться, если используется стандартный порт по типу 80 для HTTP и 443 для HTTPS, порт можно опустить. По умолчанию: localhost. |
 | [secure] | boolean | Флаг отвечающий за использование безопасного соединения. По умолчанию: false. |
 | [getModulesMethod] | string | Указывает какой метод необходимо вызывать для получения схемы API сервера. По умолчанию: introspection/getModules |
+| [connectionResetTimeout] | number | Интервал времени, через который необходимо пытаться восстановить соединение с сервером после разрыва. По умолчанию: 1000 |
+| [serverResponseTimeout] | number | Интервал времени, который даётся серверу на ответ. По умолчанию: 5000 |
+| [onConnectionError] | function(event) : void; | Функция обратного вызова, которая будет вызвана в результате ошибки соединения. |
 <!-- =====
 
 

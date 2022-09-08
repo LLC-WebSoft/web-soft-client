@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   //Подгружаем API, делать это обязательно, так как изначально api указывает на пустой объект.
   await loadApi({ secure: true });
   try {
-    //Обычные запросы.
+    //Обычные запросы.z
     const schema = await api.introspection.getModules();
     console.log(schema);
   } catch (error) {

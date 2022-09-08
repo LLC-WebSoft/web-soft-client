@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 const parseOptions = require('parse-options');
-const http = require('https');
+const https = require('https');
+const http = require('http');
 const path = require('path');
 const fs = require('fs');
+
+let transport = http;
 
 const WORKING_DIRECTORY = process.cwd();
 const apiTemplate = `import { Api } from 'web-soft-client';
@@ -14,6 +17,7 @@ export let api = {};
 
 export const loadApi = async (config = {}) => {
   const loadedApi = new Api(config);
+  await loadedApi.connect();
   await loadedApi.build();
   api = loadedApi;
 };`;
@@ -26,7 +30,7 @@ const requestIntrospectionData = JSON.stringify({
 
 const request = (data, hostname, port) =>
   new Promise((resolve, reject) => {
-    const request = http.request(
+    const request = transport.request(
       {
         hostname,
         port,
@@ -92,10 +96,12 @@ const generateTypes = (modules = {}) => {
 };
 
 (async () => {
-  const options = parseOptions('command $path $host|h #port|p', process.argv);
+  const options = parseOptions('command @secure|s $path $host|h #port|p', process.argv);
   if (!options.command || !options.path) {
     throw new Error('Command and path cli options required.');
   }
+
+  if (options.secure) transport = https;
 
   if (options.command === 'api') {
     fs.writeFileSync(path.resolve(WORKING_DIRECTORY, options.path, 'api.js'), apiTemplate);
