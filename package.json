@@ -4,7 +4,7 @@
     "name": "DonVietnam",
     "email": "don.vietnam.js@gmail.com"
   },
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Client for web-soft projects.",
   "license": "MIT",
   "keywords": [
@@ -37,7 +37,7 @@
   ],
   "scripts": {
     "start": "node index.js",
-    "lint": "eslint --ignore-path .gitignore .",
+    "lint": "eslint --ignore-path .eslintignore .",
     "fix": "eslint --fix --ignore-path .gitignore .",
     "test": "npm run lint && jest test",
     "dev": "webpack serve"
